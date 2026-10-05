@@ -602,7 +602,7 @@ cn.textContent=n+(n==1?' camisa':' camisas')+(k?' na cor '+CORES[k]:'')}
 bar.addEventListener('click',function(e){var b=e.target.closest('button');if(b)render(b.dataset.k,1)});
 render('',0)})();
 /* ===== OBJETOS 3D: dados, tamanhos e cartões ===== */
-var OSZ={P:{h:7,p:9.99},M:{h:10,p:19.99},G:{h:15,p:49.99}},OKS=['P','M','G'],OSEC={santos:'Santos',maria:'Maria','porta-tercos':'Porta-terços','sagrada-familia':'Sagrada Família',simbolos:'Símbolos da fé',presentes:'Presentes sacramentais'};
+var OSZ={P:{h:7,p:14.99},M:{h:10,p:24.99},G:{h:15,p:59.99}},OKS=['P','M','G'],OSEC={santos:'Santos',maria:'Maria','porta-tercos':'Porta-terços','sagrada-familia':'Sagrada Família',simbolos:'Símbolos da fé',presentes:'Presentes sacramentais'};
 /* PARA PUBLICAR UM OBJETO: acrescente um item na lista abaixo.
    Formato: {sec:'santos',nome:'São Miguel Arcanjo',desc:'Texto curto (opcional).',fotos:['data:image/jpeg;base64,...'],rotulos:['Frente','Detalhe']}
    sec pode ser: santos, maria, porta-tercos, sagrada-familia, simbolos, presentes. rotulos é opcional. */
