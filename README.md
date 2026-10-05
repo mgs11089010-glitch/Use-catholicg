@@ -17,4 +17,6 @@ No `index.html`, procure o trecho entre `OBJETOS3D_INICIO` e `OBJETOS3D_FIM` e a
 ## Observações
 
 - Pedidos saem pelo WhatsApp (83) 98720-0345.
-- A conta e o login ainda são só do navegador do cliente. Login de verdade vem numa próxima etapa.
+- O login usa o Supabase (e-mail e senha). O endereço e a chave pública do projeto ficam no `index.html`, no trecho `SB_URL` e `SB_KEY`. Essa chave é pública de propósito. Nunca coloque ali a chave `secret` ou `service_role`.
+- Cada pedido é guardado na tabela `orders` do Supabase, e só o próprio cliente enxerga os seus pedidos. Para criar a tabela, rode o arquivo `supabase-setup.sql` no SQL Editor do Supabase (ele não faz parte do site).
+- Só quem tem conta consegue finalizar um pedido. Visitantes navegam por todo o site e montam a sacola normalmente; ao finalizar, o site pede para entrar ou criar a conta e depois leva de volta ao pedido, com a sacola guardada. Essa regra vale para o fluxo do site: o número de WhatsApp da loja continua aberto para dúvidas e conversas.
