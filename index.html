@@ -405,6 +405,22 @@ dialog[open]::backdrop{animation:dlgFade .24s ease-out}
 .ocard h3{margin-top:14px}.ocard .osm{margin-top:1px}
 .pdg.one{grid-template-columns:minmax(0,1fr)}
 @media(max-width:380px){.sz.oz button span:last-child{display:none}}
+
+/* ===== CONTA: mensagens e nova senha ===== */
+#amsg.ok,#nmsg.ok{color:var(--ink)}#nmsg{margin-top:14px;font-size:14px}#forgot{display:inline-flex;align-items:center;min-height:44px;padding:0 2px;margin:-14px 0}.cmsg{margin:0 0 14px;color:var(--soft);min-height:0}.cmsg:empty{display:none}.oload{color:var(--soft);margin:0 0 8px}.ord .loc{display:block;margin-top:6px;font-size:13px;color:var(--soft)}
+
+/* ===== OLHO DA SENHA ===== */
+.pw{position:relative}.pw input{padding-right:50px}
+.pwt{position:absolute;top:0;right:0;width:48px;height:100%;min-height:44px;display:grid;place-items:center;border:0;background:none;color:var(--soft);cursor:pointer;border-radius:0 6px 6px 0;touch-action:manipulation;-webkit-tap-highlight-color:transparent;transition:color .2s}
+.pwt svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.pwt[aria-pressed=true]{color:var(--ink)}.pwt:focus-visible{outline:2px solid var(--ink);outline-offset:-3px}
+@media(hover:hover) and (pointer:fine){.pwt:hover{color:var(--ink)}}
+input[type=password]::-ms-reveal,input[type=password]::-ms-clear{display:none}
+
+/* ===== LOGIN NA FINALIZACAO DO PEDIDO ===== */
+.gate{border:1px solid var(--line);padding:28px 24px}.gate h3{font:600 22px Poppins,sans-serif;margin:0 0 10px}.gate p{margin:0;color:var(--soft);max-width:46ch}
+.gate .btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+.sum .hint.gnote{margin-top:-6px}
 </style>
 </head>
 <body>
@@ -494,7 +510,8 @@ dialog[open]::backdrop{animation:dlgFade .24s ease-out}
 <section id="obj-simbolos" data-p="obj-simbolos" hidden><div class="wrap"><div class="bk"><a class="back" href="#colecoes"><svg class="i il" aria-hidden="true"><use href="#i-ar"/></svg>Objetos 3D</a></div><div class="sh"><div><h2>Símbolos da fé</h2><p>Cruz, ostensório e outros símbolos da fé.</p></div></div><div class="pills"><a href="#obj-santos">Santos</a><a href="#obj-maria">Maria</a><a href="#obj-porta-tercos">Porta-terços</a><a href="#obj-sagrada-familia">Sagrada Família</a><a href="#obj-simbolos" aria-current="page">Símbolos da fé</a><a href="#obj-presentes">Presentes sacramentais</a></div><div class="cgrid ogrid" id="og-simbolos"></div><div class="empty3"><h3>Em breve</h3><p>Os objetos 3D desta seção chegam em breve.</p><div class="cta2"><a class="btn l" href="#colecoes">Ver outras seções</a><a class="btn o" href="https://wa.me/5583987200345?text=Ol%C3%A1%21%20Quero%20saber%20dos%20objetos%203D%20da%20se%C3%A7%C3%A3o%20S%C3%ADmbolos%20da%20f%C3%A9." target="_blank" rel="noopener">Perguntar pelo WhatsApp</a></div></div><div class="omore" hidden><p>Não achou o que procura? Fazemos encomendas de objetos 3D.</p><div class="cta2"><a class="btn l" href="#colecoes">Ver outras seções</a><a class="btn o" href="https://wa.me/5583987200345?text=Ol%C3%A1%21%20Quero%20encomendar%20um%20objeto%203D%20que%20n%C3%A3o%20est%C3%A1%20no%20site." target="_blank" rel="noopener">Fazer uma encomenda</a></div></div></div></section>
 <section id="obj-presentes" data-p="obj-presentes" hidden><div class="wrap"><div class="bk"><a class="back" href="#colecoes"><svg class="i il" aria-hidden="true"><use href="#i-ar"/></svg>Objetos 3D</a></div><div class="sh"><div><h2>Presentes sacramentais</h2><p>Ideias de presente para batizado, primeira comunhão, crisma e casamento.</p></div></div><div class="pills"><a href="#obj-santos">Santos</a><a href="#obj-maria">Maria</a><a href="#obj-porta-tercos">Porta-terços</a><a href="#obj-sagrada-familia">Sagrada Família</a><a href="#obj-simbolos">Símbolos da fé</a><a href="#obj-presentes" aria-current="page">Presentes sacramentais</a></div><div class="cgrid ogrid" id="og-presentes"></div><div class="empty3"><h3>Em breve</h3><p>Os objetos 3D desta seção chegam em breve.</p><div class="cta2"><a class="btn l" href="#colecoes">Ver outras seções</a><a class="btn o" href="https://wa.me/5583987200345?text=Ol%C3%A1%21%20Quero%20saber%20dos%20objetos%203D%20da%20se%C3%A7%C3%A3o%20Presentes%20sacramentais." target="_blank" rel="noopener">Perguntar pelo WhatsApp</a></div></div><div class="omore" hidden><p>Não achou o que procura? Fazemos encomendas de objetos 3D.</p><div class="cta2"><a class="btn l" href="#colecoes">Ver outras seções</a><a class="btn o" href="https://wa.me/5583987200345?text=Ol%C3%A1%21%20Quero%20encomendar%20um%20objeto%203D%20que%20n%C3%A3o%20est%C3%A1%20no%20site." target="_blank" rel="noopener">Fazer uma encomenda</a></div></div></div></section>
 <section id="sacola" data-p="sacola" hidden><div class="wrap"><div class="sh"><h2>Sua sacola</h2></div><div class="cartgrid"><div id="cartlist"></div><aside class="sum" id="cartsum"></aside></div></div></section>
-<section id="finalizar" data-p="finalizar" hidden><div class="wrap"><div class="sh"><h2>Finalizar pedido</h2><p>Preencha seus dados. Depois, o pedido segue para a loja confirmar pelo WhatsApp.</p></div><div class="cartgrid"><div><div id="coempty" class="empty" hidden></div>
+<section id="finalizar" data-p="finalizar" hidden><div class="wrap"><div class="sh"><h2>Finalizar pedido</h2><p id="cosub">Preencha seus dados. Depois, o pedido segue para a loja confirmar pelo WhatsApp.</p></div><div class="cartgrid"><div><div id="coempty" class="empty" hidden></div>
+<div id="cogate" class="gate" hidden><h3>Entre para finalizar o pedido</h3><p>Para enviar um pedido, você precisa de uma conta. Se ainda não tem, crie a sua em um minuto. A sacola fica guardada e você volta direto para cá.</p><div class="btns"><a class="btn" href="#entrar" id="gin">Entrar</a><a class="btn o" href="#entrar" id="gnew">Criar conta</a></div></div>
 <form id="co" novalidate>
 <div class="fld"><label for="c-n">Nome completo</label><input id="c-n" autocomplete="name"><span class="ferr"></span></div>
 <div class="fld"><label for="c-w">WhatsApp (com DDD)</label><input id="c-w" inputmode="tel" autocomplete="tel" placeholder="(83) 90000-0000"><span class="ferr"></span></div>
@@ -507,11 +524,11 @@ dialog[open]::backdrop{animation:dlgFade .24s ease-out}
 <div role="radiogroup" aria-label="Forma de pagamento" class="pay"><label><input type="radio" name="pg" value="pix" checked>Pix <small>à vista</small></label><label><input type="radio" name="pg" value="cartao">Cartão <small>até 3x sem juros</small></label></div>
 <div class="glass-button-wrap"><button class="glass-button" type="submit"><span class="glass-button-text">Enviar pedido</span></button><div class="glass-button-shadow"></div></div></form></div><aside class="sum" id="cosum"></aside></div></div></section>
 <section id="pedido" data-p="pedido" hidden><div class="wrap done" id="done"></div></section>
-<section id="entrar" data-p="entrar" hidden><div class="wrap"><div class="sh"><h2>Minha conta</h2></div><div class="authbox"><div class="tabs" id="atabs"><button type="button" aria-pressed="true" data-t="fl">Entrar</button><button type="button" aria-pressed="false" data-t="fr">Criar conta</button></div>
-<form id="fl" novalidate><div class="fld"><label for="l-e">E-mail</label><input id="l-e" type="email" autocomplete="username"></div><div class="fld"><label for="l-s">Senha</label><input id="l-s" type="password" autocomplete="current-password"></div><button class="btn" type="submit">Entrar</button><p class="small"><a href="https://wa.me/5583987200345?text=Ol%C3%A1!%20Esqueci%20a%20senha%20da%20minha%20conta%20no%20site%20da%20Use%20Catholic." target="_blank" rel="noopener" style="text-decoration:underline">Esqueci minha senha</a></p></form>
+<section id="entrar" data-p="entrar" hidden><div class="wrap"><div class="sh"><div><h2>Minha conta</h2><p id="aneed" role="status" hidden>Para finalizar o pedido, entre ou crie sua conta. A sacola fica guardada.</p></div></div><div class="authbox"><div class="tabs" id="atabs"><button type="button" aria-pressed="true" data-t="fl">Entrar</button><button type="button" aria-pressed="false" data-t="fr">Criar conta</button></div>
+<form id="fl" novalidate><div class="fld"><label for="l-e">E-mail</label><input id="l-e" type="email" autocomplete="username"></div><div class="fld"><label for="l-s">Senha</label><input id="l-s" type="password" autocomplete="current-password"></div><button class="btn" type="submit">Entrar</button><p class="small"><button type="button" class="lk" id="forgot">Esqueci minha senha</button></p></form>
 <form id="fr" novalidate hidden><div class="fld"><label for="r-n">Nome completo</label><input id="r-n" autocomplete="name"></div><div class="fld"><label for="r-e">E-mail</label><input id="r-e" type="email" autocomplete="username"></div><div class="fld"><label for="r-w">WhatsApp (com DDD)</label><input id="r-w" inputmode="tel" autocomplete="tel"></div><div class="fld"><label for="r-s">Senha (mínimo 6 caracteres)</label><input id="r-s" type="password" autocomplete="new-password"></div><button class="btn" type="submit">Criar conta</button></form>
 <p id="amsg" class="ferr" role="alert"></p></div></div></section>
-<section id="conta" data-p="conta" hidden><div class="wrap"><div class="sh"><h2 id="chello">Minha conta</h2></div><div id="cdata" class="cdata"></div><h3 class="oh">Meus pedidos</h3><div id="cord"></div><div class="cta2"><a class="btn l" href="#maisvendidas">Ver camisas</a><button class="btn o" id="logout" type="button">Sair</button></div></div></section>
+<section id="conta" data-p="conta" hidden><div class="wrap"><div class="sh"><h2 id="chello">Minha conta</h2></div><p id="cmsg" class="cmsg" role="status"></p><div id="cdata" class="cdata"></div><h3 class="oh">Meus pedidos</h3><div id="cord"></div><div class="cta2"><a class="btn l" href="#maisvendidas">Ver camisas</a><button class="btn o" id="logout" type="button">Sair</button></div></div></section><section id="redefinir" data-p="redefinir" hidden><div class="wrap"><div class="sh"><h2>Criar nova senha</h2></div><div class="authbox"><form id="fnp" novalidate><div class="fld"><label for="n-s">Nova senha (mínimo 6 caracteres)</label><input id="n-s" type="password" autocomplete="new-password"></div><div class="fld"><label for="n-s2">Repita a nova senha</label><input id="n-s2" type="password" autocomplete="new-password"></div><button class="btn" type="submit">Salvar nova senha</button></form><p id="nmsg" class="ferr" role="alert"></p></div></div></section>
 </main>
 <dialog id="lbx" class="lbx" aria-label="Foto do Lookbook">
   <div class="lbx-st"><figure><img alt="" draggable="false"><figcaption><b></b><small class="lbx-d"></small><small class="lbx-k"></small></figcaption></figure></div>
@@ -786,18 +803,19 @@ function thumb(i){var c=CAT[i.id];return c.S&&c.S[i.c]?'<img src="'+c.S[i.c][0]+
 function qtyTotal(){return items().reduce(function(a,i){return a+i.q},0)}
 function promoTotal(){var q=shirtQty(),r=q%3;return c2(Math.floor(q/3)*180+(r==1?70:r==2?130:0)+objTotal())}
 function hint(q){var r=q%3;return '<p class="hint">'+(r==1?'Adicione mais 1 camisa e leve 2 por R$ 130.':r==2?'Adicione mais 1 camisa e leve 3 por R$ 180.':'Promoção de 3 camisas aplicada.')+'</p>'}
-function sumHtml(cta){var sub=subtotal(),q=qtyTotal(),tot=promoTotal(),off=Math.max(0,sub-tot);return '<h3>Resumo</h3>'+(cta?'':items().map(function(i){return '<div class="row"><span>'+i.q+'× '+line(i)+'</span><span>'+money(unit(i)*i.q)+'</span></div>'}).join(''))+'<div class="row"><span>Subtotal ('+q+nm(q)+')</span><span>'+money(sub)+'</span></div>'+(off?'<div class="row"><span>Promoção</span><span>−'+money(off)+'</span></div>':'')+'<div class="row"><span>Frete</span><span>'+(tot>=250?'Grátis':'A combinar')+'</span></div><div class="row tot"><span>Total</span><b>'+money(tot)+'</b></div><small>Ou até 3x de '+money(tot/3)+' sem juros no cartão.</small>'+(cta?(shirtQty()?hint(shirtQty()):'')+'<div class="glass-button-wrap"><a class="glass-button" href="#finalizar"><span class="glass-button-text">Finalizar pedido</span></a><div class="glass-button-shadow"></div></div><a class="lnk" href="#maisvendidas">Continuar comprando</a>':'')}
+function sumHtml(cta){var sub=subtotal(),q=qtyTotal(),tot=promoTotal(),off=Math.max(0,sub-tot);return '<h3>Resumo</h3>'+(cta?'':items().map(function(i){return '<div class="row"><span>'+i.q+'× '+line(i)+'</span><span>'+money(unit(i)*i.q)+'</span></div>'}).join(''))+'<div class="row"><span>Subtotal ('+q+nm(q)+')</span><span>'+money(sub)+'</span></div>'+(off?'<div class="row"><span>Promoção</span><span>−'+money(off)+'</span></div>':'')+'<div class="row"><span>Frete</span><span>'+(tot>=250?'Grátis':'A combinar')+'</span></div><div class="row tot"><span>Total</span><b>'+money(tot)+'</b></div><small>Ou até 3x de '+money(tot/3)+' sem juros no cartão.</small>'+(cta?(shirtQty()?hint(shirtQty()):'')+(me()?'':'<p class="hint gnote">Para enviar o pedido, você entra ou cria uma conta na próxima etapa. A sacola fica guardada.</p>')+'<div class="glass-button-wrap"><a class="glass-button" href="#finalizar"><span class="glass-button-text">Finalizar pedido</span></a><div class="glass-button-shadow"></div></div><a class="lnk" href="#maisvendidas">Continuar comprando</a>':'')}
 function emptyHtml(){return '<p>Sua sacola está vazia.</p><a class="btn" href="#maisvendidas">Ver camisas</a>'}
+function gate(){var has=items().length>0,lg=!!me();$('co').hidden=!has||!lg;$('cogate').hidden=!has||lg;$('cosub').textContent=lg||!has?'Preencha seus dados. Depois, o pedido segue para a loja confirmar pelo WhatsApp.':'Falta só entrar na sua conta. Depois, o pedido segue para a loja confirmar pelo WhatsApp.'}
 function refresh(){(cart.querySelector('.glass-button-text')||cart).textContent='Sacola ('+qtyTotal()+')';var L=$('cartlist'),its=items();
 if(!its.length){L.innerHTML='<div class="empty">'+emptyHtml()+'</div>';$('cartsum').hidden=true}else{$('cartsum').hidden=false;
 L.innerHTML=its.map(function(i,k){var idx=CART.indexOf(i);return '<div class="ci" data-i="'+idx+'"><div class="cth">'+thumb(i)+'</div><div><h3>'+CAT[i.id].name+'</h3><small>'+itemSub(i)+'</small><div class="qty"><button data-a="-" aria-label="Diminuir">−</button><span>'+i.q+'</span><button data-a="+" aria-label="Aumentar">+</button><button class="rm" data-a="x">Remover</button></div></div><div class="cp">'+money(unit(i)*i.q)+'</div></div>'}).join('');
 $('cartsum').innerHTML=sumHtml(true)}
-var has=its.length>0;$('co').hidden=!has;$('coempty').hidden=has;$('coempty').innerHTML=emptyHtml();$('cosum').hidden=!has;if(has)$('cosum').innerHTML=sumHtml(false)}
+var has=its.length>0;$('coempty').hidden=has;$('coempty').innerHTML=emptyHtml();$('cosum').hidden=!has;if(has)$('cosum').innerHTML=sumHtml(false);gate()}
 function payPix(){return document.querySelector('input[name=pg]:checked').value=='pix'}
 $('cartlist').onclick=function(e){var b=e.target.closest('button[data-a]');if(!b)return;var i=CART[+b.closest('.ci').dataset.i],a=b.dataset.a;if(a=='+')i.q++;else if(a=='-'){i.q--;if(i.q<1)CART.splice(CART.indexOf(i),1)}else CART.splice(CART.indexOf(i),1);save();refresh()};
 $('co').addEventListener('input',function(e){var x=e.target;if(x.removeAttribute){x.removeAttribute('aria-invalid');var f=x.parentNode.querySelector('.ferr');if(f)f.textContent=''}});
 function bad(el,m){el.setAttribute('aria-invalid','true');el.parentNode.querySelector('.ferr').textContent=m;return 1}
-$('co').onsubmit=function(e){e.preventDefault();if(!items().length)return;var n=$('c-n'),w=$('c-w'),c=$('c-c'),ci=$('c-ci'),ad=$('c-e'),nu=$('c-nu'),bb=$('c-b'),er=0;
+$('co').onsubmit=function(e){e.preventDefault();if(!items().length)return;if(!me()){gate();return}var n=$('c-n'),w=$('c-w'),c=$('c-c'),ci=$('c-ci'),ad=$('c-e'),nu=$('c-nu'),bb=$('c-b'),er=0;
 [n,w,c,ci,ad,nu,bb].forEach(function(x){x.removeAttribute('aria-invalid');x.parentNode.querySelector('.ferr').textContent=''});
 if(n.value.trim().length<3)er+=bad(n,'Informe seu nome');if(w.value.replace(/\D/g,'').length<10)er+=bad(w,'Informe um WhatsApp com DDD');if(c.value.replace(/\D/g,'').length!=8)er+=bad(c,'CEP com 8 números');if(ci.value.trim().length<2)er+=bad(ci,'Informe a cidade');if(ad.value.trim().length<3)er+=bad(ad,'Informe a rua ou avenida');if(!nu.value.trim())er+=bad(nu,'Informe o número ou S/N');if(bb.value.trim().length<2)er+=bad(bb,'Informe o bairro');
 if(er){var f=$('co').querySelector('[aria-invalid=true]');if(f)f.focus();return}
@@ -810,33 +828,105 @@ $('otx').value=LAST.tx;if(WHATS)$('owa').href='https://wa.me/'+WHATS+'?text='+en
 $('ocp').onclick=function(){var ta=$('otx');ta.select();var ok=false;try{ok=document.execCommand('copy')}catch(e){}if(navigator.clipboard)navigator.clipboard.writeText(LAST.tx).then(function(){st($('ocp'),'Copiado')},function(){});if(ok)st($('ocp'),'Copiado')}}
 refresh();showDone();
 
-/* ===== CONTA ===== */
-var SKEY='uc_users',SSES='uc_session',OKEY='uc_orders';
+/* ===== CONTA (login de verdade, com Supabase) ===== */
+/* A chave abaixo e publica por natureza (publishable). As regras de seguranca ficam no banco (RLS). Nunca coloque aqui a chave secret ou service_role. */
+var SB_URL='https://apukwbshazczvehwichr.supabase.co',SB_KEY='sb_publishable_65Vp5OND0Md4LViLYl6VVg_5-3-tNrx',SBK='uc_sb',PK='uc_pend',sbBlk=0,acBusy=0,acRet=0;
+try{localStorage.removeItem('uc_users');localStorage.removeItem('uc_session');localStorage.removeItem('uc_orders')}catch(e){}
+document.addEventListener('securitypolicyviolation',function(e){if(/supabase\.co/.test(e.blockedURI||''))sbBlk=1});
 function jget(k,d){try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}}
 function jset(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
-function sget(){try{return localStorage.getItem(SSES)}catch(e){return null}}
-function me(){var e=sget(),u=jget(SKEY,{});return e&&u[e]?u[e]:null}
-function hex(buf){return Array.prototype.map.call(new Uint8Array(buf),function(b){return ('0'+b.toString(16)).slice(-2)}).join('')}
-function hashPw(pw,salt){return crypto.subtle.digest('SHA-256',new TextEncoder().encode(salt+':'+pw)).then(hex)}
-function rnd(){var a=new Uint8Array(16);crypto.getRandomValues(a);return hex(a)}
-function amsg(m){$('amsg').textContent=m||''}
-function renderAcc(){var u=me(),a=$('acc');st(a,u?'Olá, '+u.name.split(' ')[0]:'Entrar');a.setAttribute('href',u?'#conta':'#entrar');
-if(u){if(!$('c-n').value)$('c-n').value=u.name;if(!$('c-w').value)$('c-w').value=u.whats;$('chello').textContent='Olá, '+u.name.split(' ')[0]+'!';
-$('cdata').innerHTML='';[['Nome',u.name],['E-mail',u.email],['WhatsApp',u.whats]].forEach(function(r){var d=document.createElement('div'),b=document.createElement('b');b.textContent=r[0]+': ';d.appendChild(b);d.appendChild(document.createTextNode(r[1]));$('cdata').appendChild(d)});
-var o=(jget(OKEY,{})[u.email]||[]),L=$('cord');L.innerHTML='';if(!o.length){var p=document.createElement('p');p.className='noord';p.textContent='Você ainda não fez pedidos por aqui.';L.appendChild(p)}
-o.slice().reverse().forEach(function(x){var d=document.createElement('details');d.className='ord';var s=document.createElement('summary'),a1=document.createElement('span'),a2=document.createElement('span');a1.textContent='Pedido '+x.num+' · '+x.date;a2.textContent=money(x.total);s.appendChild(a1);s.appendChild(a2);var pre=document.createElement('pre');pre.textContent=x.tx;d.appendChild(s);d.appendChild(pre);L.appendChild(d)})}}
-function saveOrder(num,total,tx){var u=me();if(!u)return;var all=jget(OKEY,{});(all[u.email]=all[u.email]||[]).push({num:num,total:total,tx:tx,date:new Date().toLocaleDateString('pt-BR')});jset(OKEY,all);renderAcc()}
+var sbS=jget(SBK,null);
+function sbSet(x){sbS=x;if(x)jset(SBK,x);else{try{localStorage.removeItem(SBK)}catch(e){}}}
+function sbUser(u){var m=(u&&u.user_metadata)||{};return{id:u.id,email:u.email,name:m.name||'',whats:m.whatsapp||''}}
+function sbTok(j){return{a:j.access_token,r:j.refresh_token,e:j.expires_at||Math.floor(Date.now()/1000)+(j.expires_in||3600),u:j.user?sbUser(j.user):null}}
+function me(){return sbS&&sbS.u&&sbS.u.email?sbS.u:null}
+function fn(u){return (u.name||'').trim().split(' ')[0]||u.email.split('@')[0]}
+function uuid(){if(window.crypto&&crypto.randomUUID)return crypto.randomUUID();var a=new Uint8Array(16);crypto.getRandomValues(a);a[6]=a[6]&15|64;a[8]=a[8]&63|128;var h=Array.prototype.map.call(a,function(b){return ('0'+b.toString(16)).slice(-2)}).join('');return h.slice(0,8)+'-'+h.slice(8,12)+'-'+h.slice(12,16)+'-'+h.slice(16,20)+'-'+h.slice(20)}
+function sbApi(path,o,tok){o=o||{};var h={apikey:SB_KEY,'Content-Type':'application/json',Authorization:'Bearer '+(tok||SB_KEY)};if(o.h)for(var k in o.h)h[k]=o.h[k];
+return new Promise(function(res,rej){var ac=window.AbortController?new AbortController():null,t=setTimeout(function(){if(ac)ac.abort()},12000);
+fetch(SB_URL+path,{method:o.m||'GET',headers:h,body:o.b?JSON.stringify(o.b):undefined,signal:ac?ac.signal:undefined}).then(function(r){clearTimeout(t);return r.text().then(function(tx){var j=null;try{j=tx?JSON.parse(tx):null}catch(e){}if(r.ok)res(j);else rej({s:r.status,j:j||{}})})},function(){clearTimeout(t);rej({net:1})})})}
+var sbRp=null;
+function sbFresh(){if(!sbS)return Promise.reject({auth:1});if(sbS.e-60>Date.now()/1000)return Promise.resolve(sbS.a);if(sbRp)return sbRp;
+sbRp=sbApi('/auth/v1/token?grant_type=refresh_token',{m:'POST',b:{refresh_token:sbS.r}}).then(function(j){var old=sbS&&sbS.u,n=sbTok(j);if(!n.u)n.u=old;sbSet(n);return sbS.a},function(e){if(e.net||e.s>=500)throw e;sbSet(null);renderAcc();throw{auth:1}}).then(function(v){sbRp=null;return v},function(e){sbRp=null;throw e});return sbRp}
+function sbAuth(path,o){o=o||{};return sbFresh().then(function(t){return sbApi(path,o,t)}).catch(function(e){if(e&&e.s==401&&!o.retry&&sbS){o.retry=1;sbS.e=0;return sbFresh().then(function(t){return sbApi(path,o,t)})}throw e})}
+function sbErr(e,dflt){if(e.net)return sbBlk?'O login não funciona nesta prévia. Ele funciona no site publicado.':'Não foi possível conectar. Verifique sua internet e tente de novo.';
+var j=e.j||{},c=j.error_code||(typeof j.code=='string'?j.code:'')||'',tx=String(j.msg||j.message||j.error_description||'');
+if(!c){if(/invalid login credentials/i.test(tx))c='invalid_credentials';else if(/not confirmed/i.test(tx))c='email_not_confirmed';else if(/already (been )?registered/i.test(tx))c='user_already_exists'}
+if(e.s==429||/rate_limit/.test(c))return 'Muitas tentativas seguidas. Aguarde alguns minutos e tente de novo.';
+if(c=='invalid_credentials')return 'E-mail ou senha incorretos.';
+if(c=='email_not_confirmed')return 'Confirme seu e-mail antes de entrar. Procure o link na sua caixa de entrada.';
+if(c=='user_already_exists'||c=='email_exists')return 'Já existe uma conta com esse e-mail. Entre ou use outro.';
+if(c=='weak_password')return 'Essa senha é fraca. Use pelo menos 6 caracteres, misturando letras e números.';
+if(c=='same_password')return 'Escolha uma senha diferente da atual.';
+if(c=='signup_disabled')return 'O cadastro está indisponível no momento. Fale com a loja pelo WhatsApp.';
+if(e.s>=500)return 'O serviço está instável agora. Tente de novo em instantes.';
+return dflt||'Não foi possível concluir. Tente de novo.'}
+function amsg(m,ok){var x=$('amsg');x.textContent=m||'';x.classList.toggle('ok',!!ok)}
+function nmsg(m,ok){var x=$('nmsg');x.textContent=m||'';x.classList.toggle('ok',!!ok)}
+/* pedidos guardados na conta */
+var OL=0;
+function pendGet(u){return (jget(PK,{})[u.id]||[])}
+function pendSet(u,l){var a=jget(PK,{});if(l.length)a[u.id]=l;else delete a[u.id];jset(PK,a)}
+function syncPend(){var u=me();if(!u)return Promise.resolve();var q=pendGet(u);if(!q.length)return Promise.resolve();
+return q.reduce(function(p,o){return p.then(function(){var done=function(){pendSet(u,pendGet(u).filter(function(x){return x.id!=o.id}))};
+return sbAuth('/rest/v1/orders',{m:'POST',b:o,h:{Prefer:'return=minimal'}}).then(done,function(e){if(e.s==409||(e.s>=400&&e.s<500&&e.s!=401&&e.s!=408&&e.s!=429))return done();throw e})})},Promise.resolve())}
+function drawOrders(rows,pend,err){var L=$('cord');L.innerHTML='';var all=pend.map(function(x){return{num:x.num,total:x.total,text_msg:x.text_msg,date:new Date(x.created_at).toLocaleDateString('pt-BR'),loc:1}}).concat((rows||[]).map(function(x){return{num:x.num,total:x.total,text_msg:x.text_msg,date:new Date(x.created_at).toLocaleDateString('pt-BR')}}));
+if(err){var q=document.createElement('p');q.className='noord';q.textContent=err+' ';var rb=document.createElement('button');rb.type='button';rb.className='lk';rb.textContent='Tentar de novo';rb.onclick=function(){loadOrders()};q.appendChild(rb);L.appendChild(q)}
+if(!all.length&&!err){var p=document.createElement('p');p.className='noord';p.textContent='Você ainda não fez pedidos por aqui.';L.appendChild(p)}
+all.forEach(function(x){var d=document.createElement('details');d.className='ord';var s=document.createElement('summary'),a1=document.createElement('span'),a2=document.createElement('span');a1.textContent='Pedido '+x.num+' · '+x.date;a2.textContent=money(+x.total);s.appendChild(a1);s.appendChild(a2);var pre=document.createElement('pre');pre.textContent=x.text_msg||'';d.appendChild(s);d.appendChild(pre);if(x.loc){var l=document.createElement('small');l.className='loc';l.textContent='Ainda não sincronizado. Vamos tentar de novo na próxima vez que você entrar.';d.appendChild(l)}L.appendChild(d)})}
+function loadOrders(){var u=me(),L=$('cord');if(!u||!L)return;var n=++OL;if(!L.children.length){var p=document.createElement('p');p.className='oload';p.textContent='Carregando seus pedidos…';L.appendChild(p)}
+syncPend().catch(function(){}).then(function(){return sbAuth('/rest/v1/orders?select=num,total,text_msg,created_at&order=created_at.desc&limit=50')}).then(function(rows){if(n!=OL||!me())return;drawOrders(rows,pendGet(u))},function(e){if(n!=OL||(e&&e.auth))return;drawOrders([],pendGet(u),'Não foi possível carregar seus pedidos agora. Tente de novo mais tarde.')})}
+function goAfter(){var d=acRet&&items().length?'#finalizar':'#conta';acRet=0;$('aneed').hidden=true;return d}
+function renderAcc(){var u=me(),a=$('acc');st(a,u?'Olá, '+fn(u):'Entrar');a.setAttribute('href',u?'#conta':'#entrar');
+if(u){if(!$('c-n').value)$('c-n').value=u.name;if(!$('c-w').value)$('c-w').value=u.whats;$('chello').textContent='Olá, '+fn(u)+'!';
+$('cdata').innerHTML='';[['Nome',u.name||'-'],['E-mail',u.email],['WhatsApp',u.whats||'-']].forEach(function(r){var d=document.createElement('div'),b=document.createElement('b');b.textContent=r[0]+': ';d.appendChild(b);d.appendChild(document.createTextNode(r[1]));$('cdata').appendChild(d)})}
+else{$('cdata').innerHTML='';$('cord').innerHTML='';OL++}
+refresh()}
+function saveOrder(num,total,tx){var u=me();if(!u)return;
+var row={id:uuid(),num:num,total:Math.round(total*100)/100,pay:payPix()?'pix':'cartao',cliente:($('c-n').value||'').trim().slice(0,120),whatsapp:($('c-w').value||'').trim().slice(0,30),items:items().map(function(i){var c=CAT[i.id];return{n:c.name,k:c.kind=='obj'?'objeto':'camisa',c:i.c,s:i.s,q:i.q,p:unit(i)}}),text_msg:String(tx).slice(0,4000),created_at:new Date().toISOString()};
+var l=pendGet(u);l.push(row);pendSet(u,l);
+/* created_at do aparelho guarda a hora do pedido caso o envio seja adiado */
+syncPend().catch(function(){})}
 document.querySelectorAll('#atabs button').forEach(function(b){b.onclick=function(){document.querySelectorAll('#atabs button').forEach(function(x){x.setAttribute('aria-pressed',x==b)});$('fl').hidden=b.dataset.t!='fl';$('fr').hidden=b.dataset.t!='fr';amsg('')}});
 var okMail=function(s){return /^\S+@\S+\.\S+$/.test(s)};
-$('fr').onsubmit=function(e){e.preventDefault();var n=$('r-n').value.trim(),m=$('r-e').value.trim().toLowerCase(),w=$('r-w').value.trim(),s=$('r-s').value;
-if(n.length<3)return amsg('Informe seu nome completo.');if(!okMail(m))return amsg('Informe um e-mail válido.');if(w.replace(/\D/g,'').length<10)return amsg('Informe o WhatsApp com DDD.');if(s.length<6)return amsg('A senha precisa ter pelo menos 6 caracteres.');
-if(!window.crypto||!crypto.subtle)return amsg('Seu navegador não permite criar conta.');var us=jget(SKEY,{});if(us[m])return amsg('Já existe uma conta com esse e-mail. Entre ou use outro.');
-var salt=rnd();hashPw(s,salt).then(function(h){us[m]={name:n,email:m,whats:w,salt:salt,hash:h};jset(SKEY,us);try{localStorage.setItem(SSES,m)}catch(x){}$('fr').reset();amsg('');renderAcc();window.ucGo('#conta',true)})};
-$('fl').onsubmit=function(e){e.preventDefault();var m=$('l-e').value.trim().toLowerCase(),s=$('l-s').value,us=jget(SKEY,{}),u=us[m];
-if(!okMail(m)||!s)return amsg('Informe e-mail e senha.');if(!window.crypto||!crypto.subtle)return amsg('Seu navegador não permite entrar.');
-if(!u)return amsg('E-mail ou senha incorretos.');hashPw(s,u.salt).then(function(h){if(h!==u.hash)return amsg('E-mail ou senha incorretos.');try{localStorage.setItem(SSES,m)}catch(x){}$('fl').reset();amsg('');renderAcc();window.ucGo('#conta',true)})};
-$('logout').onclick=function(){try{localStorage.removeItem(SSES)}catch(e){}$('co').reset();renderAcc();$('chello').textContent='Minha conta';window.ucGo('#inicio',true);toast('Você saiu da conta. ')};
-renderAcc();
+$('fr').onsubmit=function(e){e.preventDefault();if(acBusy)return;var n=$('r-n').value.trim(),m=$('r-e').value.trim().toLowerCase(),w=$('r-w').value.trim(),p=$('r-s').value;
+if(n.length<3)return amsg('Informe seu nome completo.');if(!okMail(m))return amsg('Informe um e-mail válido.');if(w.replace(/\D/g,'').length<10)return amsg('Informe o WhatsApp com DDD.');if(p.length<6)return amsg('A senha precisa ter pelo menos 6 caracteres.');
+acBusy=1;amsg('Criando sua conta…',1);
+sbApi('/auth/v1/signup',{m:'POST',b:{email:m,password:p,data:{name:n,whatsapp:w}}}).then(function(j){acBusy=0;
+if(j&&j.access_token){sbSet(sbTok(j));$('fr').reset();amsg('');renderAcc();window.ucGo(goAfter(),true)}
+else{$('fr').reset();document.querySelector('#atabs button[data-t=fl]').click();$('l-e').value=m;amsg('Quase lá! Enviamos um link de confirmação para '+m+'. Abra o e-mail, confirme e depois entre aqui. Confira também o spam.',1)}},
+function(er){acBusy=0;amsg(sbErr(er,'Não foi possível criar a conta. Tente de novo.'))})};
+$('fl').onsubmit=function(e){e.preventDefault();if(acBusy)return;var m=$('l-e').value.trim().toLowerCase(),p=$('l-s').value;
+if(!okMail(m)||!p)return amsg('Informe e-mail e senha.');
+acBusy=1;amsg('Entrando…',1);
+sbApi('/auth/v1/token?grant_type=password',{m:'POST',b:{email:m,password:p}}).then(function(j){acBusy=0;sbSet(sbTok(j));$('fl').reset();amsg('');renderAcc();window.ucGo(goAfter(),true)},function(er){acBusy=0;amsg(sbErr(er,'Não foi possível entrar. Tente de novo.'))})};
+$('forgot').onclick=function(){if(acBusy)return;var m=$('l-e').value.trim().toLowerCase();if(!okMail(m)){$('l-e').focus();return amsg('Digite seu e-mail no campo acima e toque de novo em "Esqueci minha senha".')}
+acBusy=1;amsg('Enviando…',1);var ru=location.protocol=='https:'?'?redirect_to='+encodeURIComponent(location.origin+'/'):'';
+sbApi('/auth/v1/recover'+ru,{m:'POST',b:{email:m}}).then(function(){acBusy=0;amsg('Se existir uma conta com esse e-mail, enviamos um link para criar uma nova senha. Confira também o spam.',1)},function(er){acBusy=0;amsg(sbErr(er,'Não foi possível enviar o e-mail agora. Tente de novo.'))})};
+$('fnp').onsubmit=function(e){e.preventDefault();if(acBusy)return;var a=$('n-s').value,b=$('n-s2').value;
+if(a.length<6)return nmsg('A senha precisa ter pelo menos 6 caracteres.');if(a!==b)return nmsg('As senhas não são iguais.');if(!sbS)return nmsg('O link expirou. Peça um novo em "Esqueci minha senha".');
+acBusy=1;nmsg('Salvando…',1);
+sbAuth('/auth/v1/user',{m:'PUT',b:{password:a}}).then(function(){acBusy=0;$('fnp').reset();nmsg('');$('cmsg').textContent='Senha alterada com sucesso.';renderAcc();window.ucGo('#conta',true)},function(er){acBusy=0;nmsg(er&&er.auth?'O link expirou. Peça um novo em "Esqueci minha senha".':sbErr(er,'Não foi possível salvar a nova senha. Tente de novo.'))})};
+$('logout').onclick=function(){var t=sbS&&sbS.a;acRet=0;sbSet(null);$('co').reset();$('cmsg').textContent='';renderAcc();$('chello').textContent='Minha conta';window.ucGo('#inicio',true);toast('Você saiu da conta. ');if(t)sbApi('/auth/v1/logout?scope=local',{m:'POST'},t).catch(function(){})};
+window.ucOrders=loadOrders;
+function tab(t){document.querySelector('#atabs button[data-t='+t+']').click()}
+$('gin').addEventListener('click',function(){acRet=1;tab('fl')});$('gnew').addEventListener('click',function(){acRet=1;tab('fr')});
+$('acc').addEventListener('click',function(){acRet=0});
+window.ucPage=function(p){if(p=='entrar')$('aneed').hidden=!(acRet&&items().length&&!me());if(p=='finalizar'&&sbS)sbFresh().catch(function(){})};
+/* links do e-mail (confirmar cadastro, criar nova senha) chegam com os dados no endereco */
+(function(){var h=location.hash||'';if(!/access_token=|error_code=|error=/.test(h)||h.length<12)return;var q={};h.replace(/^#/,'').split('&').forEach(function(p){var i=p.indexOf('=');if(i>0){try{q[decodeURIComponent(p.slice(0,i))]=decodeURIComponent(p.slice(i+1).replace(/\+/g,' '))}catch(e){}}});
+var base=location.pathname+location.search;
+if(q.access_token&&q.refresh_token){history.replaceState(null,'',base+(q.type=='recovery'?'#redefinir':'#conta'));sbSet({a:q.access_token,r:q.refresh_token,e:Math.floor(Date.now()/1000)+(+q.expires_in||3600),u:null});
+sbApi('/auth/v1/user',{},q.access_token).then(function(u){if(sbS){sbS.u=sbUser(u);sbSet(sbS);renderAcc();if(location.hash=='#conta')loadOrders()}},function(){})}
+else if(q.error||q.error_code){history.replaceState(null,'',base+'#entrar');amsg(q.error_code=='otp_expired'?'O link expirou ou já foi usado. Entre com a sua senha ou peça um novo link.':'Não foi possível validar o link do e-mail. Tente de novo.')}})();
+/* ===== OLHO DA SENHA: mostrar e ocultar ===== */
+(function(){var P='<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">',EYE=P+'<path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>',OFF=P+'<path d="M3 3l18 18"/><path d="M10.6 5.1A10.7 10.7 0 0 1 12 5c6.4 0 10 7 10 7a17.6 17.6 0 0 1-3.2 4.1"/><path d="M6.6 6.6A17.3 17.3 0 0 0 2 12s3.6 7 10 7a10 10 0 0 0 4.4-1"/><path d="M9.9 9.9a3 3 0 0 0 4.2 4.2"/></svg>';
+['l-s','r-s','n-s','n-s2'].forEach(function(id){var i=$(id);if(!i)return;var w=document.createElement('div');w.className='pw';i.parentNode.insertBefore(w,i);w.appendChild(i);
+var b=document.createElement('button');b.type='button';b.className='pwt';w.appendChild(b);
+function set(show){i.type=show?'text':'password';b.setAttribute('aria-pressed',show);b.setAttribute('aria-label',show?'Ocultar senha':'Mostrar senha');b.innerHTML=show?EYE:OFF}
+b.onclick=function(){set(i.type=='password')};set(false);
+if(i.form)i.form.addEventListener('reset',function(){set(false)})})})();
+renderAcc();if(location.hash=='#conta')loadOrders();if(sbS)sbFresh().then(function(){return syncPend()}).catch(function(){});
 document.getElementById('aboutF').src=SB[0];document.getElementById('aboutB').src=SB[1];document.querySelector('.mon').src=document.querySelector('.hero .sun').src;
 /* ===== FORMULARIOS E ACESSIBILIDADE ===== */
 (function(){function dg(v,n){return v.replace(/\D/g,'').slice(0,n)}
@@ -923,7 +1013,7 @@ var NM={inicio:'Início',camisas:'Camisas',lancamentos:'Lançamentos',sobre:'Que
 function pname(p){if(NM[p])return NM[p];var h=main.querySelector('section[data-p="'+p+'"] h2');return h?h.textContent:''}
 if(reduce){ct.style.transform='none';ct.style.opacity='0'}
 function swap(r){if(r.s)window.ucProduct(r.s);curK=r.k||r.p;show(r.p);sc(r.el,false);if(window.ucReset)window.ucReset(r.p);hfocus(r.p)}
-function reveal(p){if(window.ucReveal)window.ucReveal(p)}
+function reveal(p){if(window.ucReveal)window.ucReveal(p);if(window.ucPage)window.ucPage(p);if(p=='conta'&&window.ucOrders)window.ucOrders()}
 function done(){[ct,clg,ctn].forEach(function(e){e.getAnimations().forEach(function(x){x.cancel()})});ct.style.visibility='hidden';ct.style.pointerEvents='';busy=false;if(pend){var q=pend;pend=null;go(q,false)}}
 function go(h,push){var r=pageOf(h);if(push){try{history.pushState(null,'',h)}catch(e){}}
 if(!r.p){sc(r.el,true);return}
