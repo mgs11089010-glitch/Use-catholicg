@@ -846,7 +846,9 @@ fetch(SB_URL+path,{method:o.m||'GET',headers:h,body:o.b?JSON.stringify(o.b):unde
 var sbRp=null;
 function sbFresh(){if(!sbS)return Promise.reject({auth:1});if(sbS.e-60>Date.now()/1000)return Promise.resolve(sbS.a);if(sbRp&&sbRp.s0===sbS)return sbRp;var s0=sbS;
 var p=sbApi('/auth/v1/token?grant_type=refresh_token',{m:'POST',b:{refresh_token:s0.r}}).then(function(j){if(sbS!==s0)throw{auth:1};var n=sbTok(j);if(!n.u)n.u=s0.u;sbSet(n);return sbS.a},function(e){if(e.net||e.s>=500)throw e;if(sbS===s0){sbSet(null);renderAcc()}throw{auth:1}}).then(function(v){if(sbRp===p)sbRp=null;return v},function(e){if(sbRp===p)sbRp=null;throw e});p.s0=s0;sbRp=p;return p}
-function sbAuth(path,o){o=o||{};return sbFresh().then(function(t){return sbApi(path,o,t)}).catch(function(e){if(e&&e.s==401&&!o.retry&&sbS){o.retry=1;sbS.e=0;return sbFresh().then(function(t){return sbApi(path,o,t)})}throw e})}
+/* o.uid: so envia se quem esta logado ainda e esse cliente (pedido guardado nunca sai com a conta de outra pessoa) */
+function sbAuth(path,o){o=o||{};function own(t){var m=me();if(o.uid&&(!m||m.id!==o.uid))throw{auth:1,owner:1};return sbApi(path,o,t)}
+return sbFresh().then(own).catch(function(e){if(e&&e.s==401&&!o.retry&&sbS){o.retry=1;sbS.e=0;return sbFresh().then(own)}throw e})}
 function sbErr(e,dflt){if(e.net)return sbBlk?'O login não funciona nesta prévia. Ele funciona no site publicado.':'Não foi possível conectar. Verifique sua internet e tente de novo.';
 var j=e.j||{},c=j.error_code||(typeof j.code=='string'?j.code:'')||'',tx=String(j.msg||j.message||j.error_description||'');
 if(!c){if(/invalid login credentials/i.test(tx))c='invalid_credentials';else if(/not confirmed/i.test(tx))c='email_not_confirmed';else if(/already (been )?registered/i.test(tx))c='user_already_exists'}
@@ -867,7 +869,7 @@ function pendGet(u){return (jget(PK,{})[u.id]||[])}
 function pendSet(u,l){var a=jget(PK,{});if(l.length)a[u.id]=l;else delete a[u.id];jset(PK,a)}
 function syncPend(){var u=me();if(!u)return Promise.resolve();var q=pendGet(u);if(!q.length)return Promise.resolve();
 return q.reduce(function(p,o){return p.then(function(){var done=function(){pendSet(u,pendGet(u).filter(function(x){return x.id!=o.id}))};
-return sbAuth('/rest/v1/orders',{m:'POST',b:o,h:{Prefer:'return=minimal'}}).then(done,function(e){if(e.s==409||(e.s>=400&&e.s<500&&e.s!=401&&e.s!=408&&e.s!=429))return done();throw e})})},Promise.resolve())}
+return sbAuth('/rest/v1/orders',{m:'POST',b:o,h:{Prefer:'return=minimal'},uid:u.id}).then(done,function(e){if(e.s==409||(e.s>=400&&e.s<500&&e.s!=401&&e.s!=403&&e.s!=408&&e.s!=429))return done();throw e})})},Promise.resolve())}
 function drawOrders(rows,pend,err){var L=$('cord');L.innerHTML='';var all=pend.map(function(x){return{num:x.num,total:x.total,text_msg:x.text_msg,date:new Date(x.created_at).toLocaleDateString('pt-BR'),loc:1}}).concat((rows||[]).map(function(x){return{num:x.num,total:x.total,text_msg:x.text_msg,date:new Date(x.created_at).toLocaleDateString('pt-BR')}}));
 if(err){var q=document.createElement('p');q.className='noord';q.textContent=err+' ';var rb=document.createElement('button');rb.type='button';rb.className='lk';rb.textContent='Tentar de novo';rb.onclick=function(){loadOrders()};q.appendChild(rb);L.appendChild(q)}
 if(!all.length&&!err){var p=document.createElement('p');p.className='noord';p.textContent='Você ainda não fez pedidos por aqui.';L.appendChild(p)}
