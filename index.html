@@ -817,8 +817,8 @@ if(n.value.trim().length<3)er+=bad(n,'Informe seu nome');if(w.value.replace(/\D/
 if(er){var f=$('co').querySelector('[aria-invalid=true]');if(f)f.focus();return}
 var pix=payPix(),tot=promoTotal(),num='UC'+String(Math.floor(Math.random()*90000)+10000);
 var tx='Pedido '+num+'\n\nItens:\n'+items().map(function(i){return '- '+i.q+'x '+line(i)+' - '+money(unit(i)*i.q)}).join('\n')+'\n\nPagamento: '+(pix?'Pix':'Cartão (até 3x sem juros)')+'\nTotal (com promoção): '+money(tot)+'\n\nCliente: '+n.value.trim()+'\nWhatsApp: '+w.value.trim()+'\nCEP: '+c.value.trim()+'\nCidade/UF: '+ci.value.trim()+'\nEndereço: '+ad.value.trim()+', '+nu.value.trim()+($('c-cp').value.trim()?' - '+$('c-cp').value.trim():'')+'\nBairro: '+bb.value.trim()+($('c-o').value.trim()?'\nObs: '+$('c-o').value.trim():'');
-LAST={num:num,tx:tx};saveOrder(num,tot,tx);CART=[];save();refresh();$('co').reset();showDone();window.ucGo('#pedido',true)};
-function showDone(){var D=$('done');if(!LAST){D.innerHTML='<h2>Nenhum pedido recente</h2><p>Monte sua sacola para fazer um pedido.</p><a class="btn" href="#maisvendidas">Ver camisas</a>';return}
+LAST={num:num,tx:tx,uid:me().id};saveOrder(num,tot,tx);CART=[];save();refresh();$('co').reset();showDone();window.ucGo('#pedido',true)};
+function showDone(){var D=$('done'),u=me();if(!LAST||(u&&LAST.uid!==u.id)){LAST=null;D.innerHTML='<h2>Nenhum pedido recente</h2><p>Monte sua sacola para fazer um pedido.</p><a class="btn" href="#maisvendidas">Ver camisas</a>';return}
 D.innerHTML='<h2>Pedido '+LAST.num+' montado.</h2><p>Falta um passo: envie o pedido para a loja pelo WhatsApp. Lá confirmamos o estoque, o frete e o pagamento.</p><textarea id="otx" readonly aria-label="Resumo do pedido"></textarea><div class="btns">'+(WHATS?'<div class="glass-button-wrap"><a class="glass-button" id="owa" target="_blank" rel="noopener"><span class="glass-button-text">Enviar pelo WhatsApp</span></a><div class="glass-button-shadow"></div></div>':'')+'<button class="btn '+(WHATS?'o':'')+'" id="ocp" type="button">Copiar pedido</button><a class="btn o" href="#inicio">Voltar à loja</a></div>';
 $('otx').value=LAST.tx;if(WHATS)$('owa').href='https://wa.me/'+WHATS+'?text='+encodeURIComponent(LAST.tx);
 $('ocp').onclick=function(){var ta=$('otx');ta.select();var ok=false;try{ok=document.execCommand('copy')}catch(e){}if(navigator.clipboard)navigator.clipboard.writeText(LAST.tx).then(function(){st($('ocp'),'Copiado')},function(){});if(ok)st($('ocp'),'Copiado')}}
@@ -831,8 +831,10 @@ try{localStorage.removeItem('uc_users');localStorage.removeItem('uc_session');lo
 document.addEventListener('securitypolicyviolation',function(e){if(/supabase\.co/.test(e.blockedURI||''))sbBlk=1});
 function jget(k,d){try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}}
 function jset(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+/* links do e-mail so valem para um pedido feito neste aparelho (cadastro: 24 h, nova senha: 1 h) */
+var FK='uc_flow';function flowMark(t){jset(FK,{t:t,x:Date.now()+(t=='recovery'?3600e3:864e5)})}
 var sbS=jget(SBK,null);
-function sbSet(x){sbS=x;if(x)jset(SBK,x);else{try{localStorage.removeItem(SBK)}catch(e){}}}
+function sbSet(x){if(x!==sbS)sbRp=null;sbS=x;if(x)jset(SBK,x);else{try{localStorage.removeItem(SBK)}catch(e){}}}
 function sbUser(u){var m=(u&&u.user_metadata)||{};return{id:u.id,email:u.email,name:m.name||'',whats:m.whatsapp||''}}
 function sbTok(j){return{a:j.access_token,r:j.refresh_token,e:j.expires_at||Math.floor(Date.now()/1000)+(j.expires_in||3600),u:j.user?sbUser(j.user):null}}
 function me(){return sbS&&sbS.u&&sbS.u.email?sbS.u:null}
@@ -842,8 +844,8 @@ function sbApi(path,o,tok){o=o||{};var h={apikey:SB_KEY,'Content-Type':'applicat
 return new Promise(function(res,rej){var ac=window.AbortController?new AbortController():null,t=setTimeout(function(){if(ac)ac.abort()},12000);
 fetch(SB_URL+path,{method:o.m||'GET',headers:h,body:o.b?JSON.stringify(o.b):undefined,signal:ac?ac.signal:undefined}).then(function(r){clearTimeout(t);return r.text().then(function(tx){var j=null;try{j=tx?JSON.parse(tx):null}catch(e){}if(r.ok)res(j);else rej({s:r.status,j:j||{}})})},function(){clearTimeout(t);rej({net:1})})})}
 var sbRp=null;
-function sbFresh(){if(!sbS)return Promise.reject({auth:1});if(sbS.e-60>Date.now()/1000)return Promise.resolve(sbS.a);if(sbRp)return sbRp;
-sbRp=sbApi('/auth/v1/token?grant_type=refresh_token',{m:'POST',b:{refresh_token:sbS.r}}).then(function(j){var old=sbS&&sbS.u,n=sbTok(j);if(!n.u)n.u=old;sbSet(n);return sbS.a},function(e){if(e.net||e.s>=500)throw e;sbSet(null);renderAcc();throw{auth:1}}).then(function(v){sbRp=null;return v},function(e){sbRp=null;throw e});return sbRp}
+function sbFresh(){if(!sbS)return Promise.reject({auth:1});if(sbS.e-60>Date.now()/1000)return Promise.resolve(sbS.a);if(sbRp&&sbRp.s0===sbS)return sbRp;var s0=sbS;
+var p=sbApi('/auth/v1/token?grant_type=refresh_token',{m:'POST',b:{refresh_token:s0.r}}).then(function(j){if(sbS!==s0)throw{auth:1};var n=sbTok(j);if(!n.u)n.u=s0.u;sbSet(n);return sbS.a},function(e){if(e.net||e.s>=500)throw e;if(sbS===s0){sbSet(null);renderAcc()}throw{auth:1}}).then(function(v){if(sbRp===p)sbRp=null;return v},function(e){if(sbRp===p)sbRp=null;throw e});p.s0=s0;sbRp=p;return p}
 function sbAuth(path,o){o=o||{};return sbFresh().then(function(t){return sbApi(path,o,t)}).catch(function(e){if(e&&e.s==401&&!o.retry&&sbS){o.retry=1;sbS.e=0;return sbFresh().then(function(t){return sbApi(path,o,t)})}throw e})}
 function sbErr(e,dflt){if(e.net)return sbBlk?'O login não funciona nesta prévia. Ele funciona no site publicado.':'Não foi possível conectar. Verifique sua internet e tente de novo.';
 var j=e.j||{},c=j.error_code||(typeof j.code=='string'?j.code:'')||'',tx=String(j.msg||j.message||j.error_description||'');
@@ -873,7 +875,8 @@ all.forEach(function(x){var d=document.createElement('details');d.className='ord
 function loadOrders(){var u=me(),L=$('cord');if(!u||!L)return;var n=++OL;if(!L.children.length){var p=document.createElement('p');p.className='oload';p.textContent='Carregando seus pedidos…';L.appendChild(p)}
 syncPend().catch(function(){}).then(function(){return sbAuth('/rest/v1/orders?select=num,total,text_msg,created_at&order=created_at.desc&limit=50')}).then(function(rows){if(n!=OL||!me())return;drawOrders(rows,pendGet(u))},function(e){if(n!=OL||(e&&e.auth))return;drawOrders([],pendGet(u),'Não foi possível carregar seus pedidos agora. Tente de novo mais tarde.')})}
 function goAfter(){var d=acRet&&items().length?'#finalizar':'#conta';acRet=0;$('aneed').hidden=true;return d}
-function renderAcc(){var u=me(),a=$('acc');st(a,u?'Olá, '+fn(u):'Entrar');a.setAttribute('href',u?'#conta':'#entrar');
+/* dados de um cliente nao passam para outro: troca de conta limpa o formulario, e o ultimo pedido so aparece para quem o fez */
+var accUid=null;function renderAcc(){var u=me(),a=$('acc'),uid=u?u.id:null;if(uid&&accUid&&uid!==accUid){$('co').reset();$('cmsg').textContent=''}if(uid)accUid=uid;if(!u)$('chello').textContent='Minha conta';showDone();st(a,u?'Olá, '+fn(u):'Entrar');a.setAttribute('href',u?'#conta':'#entrar');
 if(u){if(!$('c-n').value)$('c-n').value=u.name;if(!$('c-w').value)$('c-w').value=u.whats;$('chello').textContent='Olá, '+fn(u)+'!';
 $('cdata').innerHTML='';[['Nome',u.name||'-'],['E-mail',u.email],['WhatsApp',u.whats||'-']].forEach(function(r){var d=document.createElement('div'),b=document.createElement('b');b.textContent=r[0]+': ';d.appendChild(b);d.appendChild(document.createTextNode(r[1]));$('cdata').appendChild(d)})}
 else{$('cdata').innerHTML='';$('cord').innerHTML='';OL++}
@@ -887,7 +890,7 @@ document.querySelectorAll('#atabs button').forEach(function(b){b.onclick=functio
 var okMail=function(s){return /^\S+@\S+\.\S+$/.test(s)};
 $('fr').onsubmit=function(e){e.preventDefault();if(acBusy)return;var n=$('r-n').value.trim(),m=$('r-e').value.trim().toLowerCase(),w=$('r-w').value.trim(),p=$('r-s').value;
 if(n.length<3)return amsg('Informe seu nome completo.');if(!okMail(m))return amsg('Informe um e-mail válido.');if(w.replace(/\D/g,'').length<10)return amsg('Informe o WhatsApp com DDD.');if(p.length<6)return amsg('A senha precisa ter pelo menos 6 caracteres.');
-acBusy=1;amsg('Criando sua conta…',1);
+acBusy=1;amsg('Criando sua conta…',1);flowMark('signup');
 sbApi('/auth/v1/signup',{m:'POST',b:{email:m,password:p,data:{name:n,whatsapp:w}}}).then(function(j){acBusy=0;
 if(j&&j.access_token){sbSet(sbTok(j));$('fr').reset();amsg('');renderAcc();window.ucGo(goAfter(),true)}
 else{$('fr').reset();document.querySelector('#atabs button[data-t=fl]').click();$('l-e').value=m;amsg('Quase lá! Enviamos um link de confirmação para '+m+'. Abra o e-mail, confirme e depois entre aqui. Confira também o spam.',1)}},
@@ -897,13 +900,13 @@ if(!okMail(m)||!p)return amsg('Informe e-mail e senha.');
 acBusy=1;amsg('Entrando…',1);
 sbApi('/auth/v1/token?grant_type=password',{m:'POST',b:{email:m,password:p}}).then(function(j){acBusy=0;sbSet(sbTok(j));$('fl').reset();amsg('');renderAcc();window.ucGo(goAfter(),true)},function(er){acBusy=0;amsg(sbErr(er,'Não foi possível entrar. Tente de novo.'))})};
 $('forgot').onclick=function(){if(acBusy)return;var m=$('l-e').value.trim().toLowerCase();if(!okMail(m)){$('l-e').focus();return amsg('Digite seu e-mail no campo acima e toque de novo em "Esqueci minha senha".')}
-acBusy=1;amsg('Enviando…',1);var ru=location.protocol=='https:'?'?redirect_to='+encodeURIComponent(location.origin+'/'):'';
+acBusy=1;amsg('Enviando…',1);flowMark('recovery');var ru=location.protocol=='https:'?'?redirect_to='+encodeURIComponent(location.origin+'/'):'';
 sbApi('/auth/v1/recover'+ru,{m:'POST',b:{email:m}}).then(function(){acBusy=0;amsg('Se existir uma conta com esse e-mail, enviamos um link para criar uma nova senha. Confira também o spam.',1)},function(er){acBusy=0;amsg(sbErr(er,'Não foi possível enviar o e-mail agora. Tente de novo.'))})};
 $('fnp').onsubmit=function(e){e.preventDefault();if(acBusy)return;var a=$('n-s').value,b=$('n-s2').value;
 if(a.length<6)return nmsg('A senha precisa ter pelo menos 6 caracteres.');if(a!==b)return nmsg('As senhas não são iguais.');if(!sbS)return nmsg('O link expirou. Peça um novo em "Esqueci minha senha".');
 acBusy=1;nmsg('Salvando…',1);
 sbAuth('/auth/v1/user',{m:'PUT',b:{password:a}}).then(function(){acBusy=0;$('fnp').reset();nmsg('');$('cmsg').textContent='Senha alterada com sucesso.';renderAcc();window.ucGo('#conta',true)},function(er){acBusy=0;nmsg(er&&er.auth?'O link expirou. Peça um novo em "Esqueci minha senha".':sbErr(er,'Não foi possível salvar a nova senha. Tente de novo.'))})};
-$('logout').onclick=function(){var t=sbS&&sbS.a;acRet=0;sbSet(null);$('co').reset();$('cmsg').textContent='';renderAcc();$('chello').textContent='Minha conta';window.ucGo('#inicio',true);toast('Você saiu da conta. ');if(t)sbApi('/auth/v1/logout?scope=local',{m:'POST'},t).catch(function(){})};
+$('logout').onclick=function(){var t=sbS&&sbS.a;acRet=0;LAST=null;sbSet(null);$('co').reset();$('cmsg').textContent='';renderAcc();$('chello').textContent='Minha conta';window.ucGo('#inicio',true);toast('Você saiu da conta. ');if(t)sbApi('/auth/v1/logout?scope=local',{m:'POST'},t).catch(function(){})};
 window.ucOrders=loadOrders;
 function tab(t){document.querySelector('#atabs button[data-t='+t+']').click()}
 $('gin').addEventListener('click',function(){acRet=1;tab('fl')});$('gnew').addEventListener('click',function(){acRet=1;tab('fr')});
@@ -912,8 +915,11 @@ window.ucPage=function(p){if(p=='entrar')$('aneed').hidden=!(acRet&&items().leng
 /* links do e-mail (confirmar cadastro, criar nova senha) chegam com os dados no endereco */
 (function(){var h=location.hash||'';if(!/access_token=|error_code=|error=/.test(h)||h.length<12)return;var q={};h.replace(/^#/,'').split('&').forEach(function(p){var i=p.indexOf('=');if(i>0){try{q[decodeURIComponent(p.slice(0,i))]=decodeURIComponent(p.slice(i+1).replace(/\+/g,' '))}catch(e){}}});
 var base=location.pathname+location.search;
-if(q.access_token&&q.refresh_token){history.replaceState(null,'',base+(q.type=='recovery'?'#redefinir':'#conta'));sbSet({a:q.access_token,r:q.refresh_token,e:Math.floor(Date.now()/1000)+(+q.expires_in||3600),u:null});
-sbApi('/auth/v1/user',{},q.access_token).then(function(u){if(sbS){sbS.u=sbUser(u);sbSet(sbS);renderAcc();if(location.hash=='#conta')loadOrders()}},function(){})}
+if(q.access_token&&q.refresh_token){var f=jget(FK,null);try{localStorage.removeItem(FK)}catch(e){}
+var rec=q.type=='recovery',ok=f&&f.x>Date.now()&&(rec?f.t=='recovery':f.t=='signup');
+history.replaceState(null,'',base+'#entrar');
+if(!ok){amsg('Por segurança, entre com seu e-mail e senha. Se você pediu uma nova senha em outro aparelho, peça de novo por aqui.');return}
+sbApi('/auth/v1/user',{},q.access_token).then(function(u){sbSet({a:q.access_token,r:q.refresh_token,e:Math.floor(Date.now()/1000)+(+q.expires_in||3600),u:sbUser(u)});renderAcc();window.ucGo(rec?'#redefinir':'#conta',true)},function(){amsg('Não foi possível validar o link do e-mail. Tente de novo.')})}
 else if(q.error||q.error_code){history.replaceState(null,'',base+'#entrar');amsg(q.error_code=='otp_expired'?'O link expirou ou já foi usado. Entre com a sua senha ou peça um novo link.':'Não foi possível validar o link do e-mail. Tente de novo.')}})();
 /* ===== OLHO DA SENHA: mostrar e ocultar ===== */
 (function(){var P='<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">',EYE=P+'<path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>',OFF=P+'<path d="M3 3l18 18"/><path d="M10.6 5.1A10.7 10.7 0 0 1 12 5c6.4 0 10 7 10 7a17.6 17.6 0 0 1-3.2 4.1"/><path d="M6.6 6.6A17.3 17.3 0 0 0 2 12s3.6 7 10 7a10 10 0 0 0 4.4-1"/><path d="M9.9 9.9a3 3 0 0 0 4.2 4.2"/></svg>';
