@@ -844,6 +844,8 @@ var CART=[],LAST=null;try{CART=JSON.parse(localStorage.getItem('uc_cart')||'[]')
 var money=function(v){return 'R$ '+br(v)},$=function(i){return document.getElementById(i)};
 function st(e,x){(e.querySelector('.glass-button-text')||e).textContent=x}
 function save(){try{localStorage.setItem('uc_cart',JSON.stringify(CART))}catch(e){}}
+/* titulo da aba quando a pessoa sai: lembra da sacola */
+(function(){var tt=null;document.addEventListener('visibilitychange',function(){if(document.hidden){tt=document.title;var n=0;try{n=qtyTotal()}catch(e){}document.title=n?'('+n+') Volte para finalizar seu pedido':'Vista a sua fé · Volte logo'}else if(tt!==null){document.title=tt;tt=null}})})();
 function count(){return CART.reduce(function(a,i){return a+i.q},0)}
 function items(){return CART.filter(function(i){var c=CAT[i.id];return c&&(c.kind!='obj'||OSZ[i.s])})}
 function unit(i){var c=CAT[i.id];return c.kind=='obj'?opr2(c,i.s):c.price}
