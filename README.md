@@ -1,22 +1,30 @@
-# Use Catholic
+# Use Catholic · site
 
-Site da loja Use Catholic: um único arquivo `index.html` (HTML, CSS e JavaScript juntos, com as imagens embutidas). Não precisa de build.
+Loja online de camisas católicas e objetos 3D. Site estático na Vercel (deploy automático a cada push no `main`).
 
-## Como publicar na Vercel
+## Como o site é montado
 
-1. Na Vercel, clique em **Add New > Project** e escolha este repositório.
-2. Em **Framework Preset**, deixe **Other**. Não preencha Build Command nem Output Directory.
-3. Clique em **Deploy**.
+- `fonte/index.html` é o app (HTML, CSS e JavaScript num arquivo só). **Toda mudança no site é feita aqui.**
+- `fonte/site.json` guarda as configurações: endereço oficial, ID do Google Analytics (`ga_id`), código do Search Console (`gsc`), telefone, Instagram e cidade.
+- `python3 ferramentas/build.py` gera, a partir da fonte, tudo o que vai para o ar:
+  - uma página pronta por endereço: `/`, `/camisas`, `/camisas/<estampa>`, `/objetos-3d/<seção>`, `/objetos-3d/<seção>/<peça>`, `/lancamentos`, `/quem-somos`, `/duvidas` e `/privacidade`;
+  - em cada página: título igual ao h1, descrição, endereço oficial (canonical), prévia para WhatsApp e Instagram (Open Graph), dados para o Google (JSON-LD: loja, produtos com preço, migalhas, perguntas frequentes) e os produtos já escritos no HTML;
+  - `sitemap.xml`, `robots.txt` e `llms.txt` (resumo da loja para assistentes de IA);
+  - as páginas internas da loja (`/sacola`, `/finalizar`, `/conta`…) com `noindex`.
+- Fotos: camisas em `img/camisas/` (webp de 720 px e 400 px), objetos 3D em `objetos/`, prévia geral em `img/og.jpg`.
+- Os links antigos com `#` (`#camisas`, `#camisa-sao-bento`, `#obj-santos`…) continuam funcionando e levam ao endereço novo.
 
-Depois disso, cada alteração enviada para o branch `main` publica o site de novo, sozinha, em cerca de 1 minuto.
+## Novos objetos 3D
 
-## Como adicionar um objeto 3D
+`python3 /home/claude/catalogo-3d/add_objetos.py` publica as fotos de `catalogo-3d/fotos/` na fonte e roda o build sozinho.
 
-No `index.html`, procure o trecho entre `OBJETOS3D_INICIO` e `OBJETOS3D_FIM` e acrescente um item na lista `OBJ`, com `sec`, `nome`, `fotos` e, se quiser, `desc` e `rotulos`. As seções são: `santos`, `maria`, `porta-tercos`, `sagrada-familia`, `simbolos` e `presentes`.
+## Medição (Google Analytics 4)
 
-## Observações
+Com `ga_id` preenchido em `fonte/site.json` e o build rodado, o site passa a medir visitas e toques no WhatsApp (evento `whatsapp_click`), com aviso de cookies (LGPD) e modo de consentimento: sem autorização, nenhum cookie é gravado. A política de privacidade muda de texto sozinha.
 
-- Pedidos saem pelo WhatsApp (83) 98720-0345.
-- O login usa o Supabase (e-mail e senha). O endereço e a chave pública do projeto ficam no `index.html`, no trecho `SB_URL` e `SB_KEY`. Essa chave é pública de propósito. Nunca coloque ali a chave `secret` ou `service_role`.
-- Cada pedido é guardado na tabela `orders` do Supabase, e só o próprio cliente enxerga os seus pedidos. Para criar a tabela, rode o arquivo `supabase-setup.sql` no SQL Editor do Supabase (ele não faz parte do site).
-- Só quem tem conta consegue finalizar um pedido. Visitantes navegam por todo o site e montam a sacola normalmente; ao finalizar, o site pede para entrar ou criar a conta e depois leva de volta ao pedido, com a sacola guardada. Essa regra vale para o fluxo do site: o número de WhatsApp da loja continua aberto para dúvidas e conversas.
+## Testes locais
+
+```
+python3 ferramentas/serve.py . 8792          # servidor parecido com a Vercel
+python3 ferramentas/medir.py http://127.0.0.1:8792/   # tempo no celular em 4G lento
+```

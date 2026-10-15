@@ -1,0 +1,62 @@
+# Use Catholic
+
+> Loja online de camisas básicas católicas e objetos 3D com temas da fé, de Campina Grande-PB. Pedido pelo site ou pelo WhatsApp +55 83 98720-0345.
+
+## Condições
+- Camisas: 1 por R$ 70, 2 por R$ 130, 3 por R$ 180 (pode misturar estampas e cores). Tamanhos P, M, G e GG.
+- Objetos 3D: 26 peças, a partir de R$ 9,99. Santos e Nossa Senhora em 7, 10 e 15 cm.
+- Pagamento: Pix ou cartão de crédito em até 3x sem juros.
+- Frete grátis acima de R$ 250. O prazo depende da região e aparece antes de finalizar.
+- Troca em até 7 dias depois de receber, com a peça sem uso.
+- Encomendas: objetos 3D que não estão no site podem ser pedidos pelo WhatsApp.
+
+## Camisas
+- [São Bento](https://use-catholicg.vercel.app/camisas/sao-bento): camisa básica católica, R$ 70,00
+- [Santa Teresinha](https://use-catholicg.vercel.app/camisas/santa-teresinha): camisa básica católica, R$ 70,00
+- [Corpo de Cristo](https://use-catholicg.vercel.app/camisas/corpo-de-cristo): camisa básica católica, R$ 70,00
+- [Virgem da Medalha Milagrosa](https://use-catholicg.vercel.app/camisas/virgem-da-medalha-milagrosa): camisa básica católica, R$ 70,00
+- [Gratia Plena](https://use-catholicg.vercel.app/camisas/gratia-plena): camisa básica católica, R$ 70,00
+
+## Objetos 3D: Santos
+- [São Francisco de Assis](https://use-catholicg.vercel.app/objetos-3d/santos/sao-francisco-de-assis): a partir de R$ 9,99
+- [São José](https://use-catholicg.vercel.app/objetos-3d/santos/sao-jose): a partir de R$ 9,99
+- [Santa Teresinha](https://use-catholicg.vercel.app/objetos-3d/santos/santa-teresinha): a partir de R$ 9,99
+- [São Padre Pio](https://use-catholicg.vercel.app/objetos-3d/santos/sao-padre-pio): a partir de R$ 9,99
+- [Santa Rita de Cássia](https://use-catholicg.vercel.app/objetos-3d/santos/santa-rita-de-cassia): a partir de R$ 9,99
+- [São Carlo Acutis](https://use-catholicg.vercel.app/objetos-3d/santos/sao-carlo-acutis): a partir de R$ 9,99
+- [São Bento](https://use-catholicg.vercel.app/objetos-3d/santos/sao-bento): a partir de R$ 9,99
+
+## Objetos 3D: Maria
+- [Nossa Senhora das Graças](https://use-catholicg.vercel.app/objetos-3d/maria/nossa-senhora-das-gracas): a partir de R$ 9,99
+- [Nossa Senhora Aparecida](https://use-catholicg.vercel.app/objetos-3d/maria/nossa-senhora-aparecida): a partir de R$ 9,99
+- [Nossa Senhora do Rosário](https://use-catholicg.vercel.app/objetos-3d/maria/nossa-senhora-do-rosario): a partir de R$ 9,99
+- [Nossa Senhora das Dores](https://use-catholicg.vercel.app/objetos-3d/maria/nossa-senhora-das-dores): a partir de R$ 9,99
+- [Nossa Senhora de Guadalupe](https://use-catholicg.vercel.app/objetos-3d/maria/nossa-senhora-de-guadalupe): a partir de R$ 9,99
+- [Nossa Senhora da Conceição](https://use-catholicg.vercel.app/objetos-3d/maria/nossa-senhora-da-conceicao): a partir de R$ 9,99
+- [Nossa Senhora de Fátima](https://use-catholicg.vercel.app/objetos-3d/maria/nossa-senhora-de-fatima): a partir de R$ 9,99
+
+## Objetos 3D: Porta-terços
+- [Porta-terços Sagrada Família](https://use-catholicg.vercel.app/objetos-3d/porta-tercos/porta-tercos-sagrada-familia): a partir de R$ 14,99
+- [Porta-terços Sagrado Coração de Jesus](https://use-catholicg.vercel.app/objetos-3d/porta-tercos/porta-tercos-sagrado-coracao-de-jesus): a partir de R$ 14,99
+- [Porta-terços Nossa Senhora Aparecida](https://use-catholicg.vercel.app/objetos-3d/porta-tercos/porta-tercos-nossa-senhora-aparecida): a partir de R$ 14,99
+- [Porta-terços Nossa Senhora das Graças](https://use-catholicg.vercel.app/objetos-3d/porta-tercos/porta-tercos-nossa-senhora-das-gracas): a partir de R$ 14,99
+- [Porta-terços São Bento](https://use-catholicg.vercel.app/objetos-3d/porta-tercos/porta-tercos-sao-bento): a partir de R$ 14,99
+- [Porta-terços Santa Teresinha](https://use-catholicg.vercel.app/objetos-3d/porta-tercos/porta-tercos-santa-teresinha): a partir de R$ 14,99
+
+## Objetos 3D: Sagrada Família
+- [Sagrada Família](https://use-catholicg.vercel.app/objetos-3d/sagrada-familia/sagrada-familia): a partir de R$ 54,99
+
+## Objetos 3D: Símbolos da fé
+- [Divino Espírito Santo](https://use-catholicg.vercel.app/objetos-3d/simbolos/divino-espirito-santo): a partir de R$ 24,99
+- [Crucifixo](https://use-catholicg.vercel.app/objetos-3d/simbolos/crucifixo): a partir de R$ 9,99
+- [Ore e Confie](https://use-catholicg.vercel.app/objetos-3d/simbolos/ore-e-confie): a partir de R$ 24,99
+
+## Objetos 3D: Presentes sacramentais
+- [Presépio](https://use-catholicg.vercel.app/objetos-3d/presentes/presepio): a partir de R$ 55,00
+- [Presépio com Reis Magos](https://use-catholicg.vercel.app/objetos-3d/presentes/presepio-com-reis-magos): a partir de R$ 85,00
+
+## Páginas
+- [Quem somos](https://use-catholicg.vercel.app/quem-somos)
+- [Dúvidas frequentes](https://use-catholicg.vercel.app/duvidas)
+- [Política de privacidade](https://use-catholicg.vercel.app/privacidade)
+- [Instagram](https://www.instagram.com/use_catholicg/)

@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+Disallow: /sacola
+Disallow: /finalizar
+Disallow: /pedido
+Disallow: /entrar
+Disallow: /conta
+Disallow: /redefinir
+Disallow: /aprovar
+
+Sitemap: https://use-catholicg.vercel.app/sitemap.xml
