@@ -98,14 +98,14 @@ def migalhas(itens):
     return {'@type': 'BreadcrumbList', 'itemListElement': [{'@type': 'ListItem', 'position': i + 1, 'name': n, 'item': BASE + u} for i, (n, u) in enumerate(itens)]}
 def descricao(r, d):
     pag = d['pag']
-    if r == '/': return f"Camisas católicas com estampas de santos e da Eucaristia por R$ 70 e {d['nObj']} objetos 3D de santos, Nossa Senhora e presépios a partir de R$ {br(d['minObj'])}. Use Catholic, {CFG['cidade']}-{CFG['uf']}. Pedido pelo WhatsApp."
-    if pag == 'camisas': return 'Camisas básicas católicas: ' + ', '.join(c['nome'] for c in d['camisas']) + '. R$ 70, 2 por R$ 130 ou 3 por R$ 180. Frete grátis acima de R$ 250.'
+    if r == '/': return f"Camisas católicas com estampas de santos e da Eucaristia por R$ 75 e {d['nObj']} objetos 3D de santos, Nossa Senhora e presépios a partir de R$ {br(d['minObj'])}. Use Catholic, {CFG['cidade']}-{CFG['uf']}. Pedido pelo WhatsApp."
+    if pag == 'camisas': return 'Camisas básicas católicas: ' + ', '.join(c['nome'] for c in d['camisas']) + '. R$ 75, 2 por R$ 140 ou 3 por R$ 200. Frete grátis acima de R$ 250.'
     if pag == 'produto':
         P = d['prod']
         if P['obj']:
             mn = min(o['preco'] for o in P['ofertas'])
             return corta(f"{P['nome']} em objeto 3D ({P['alt'][0].lower() + P['alt'][1:]}). {'A partir de ' if len(P['ofertas']) > 1 else ''}R$ {br(mn)}. {P['desc']}")
-        return corta(f"Camisa básica católica {P['nome']}, nas cores {', '.join(P['cores'])}, tamanhos P a GG. R$ 70, ou 3 por R$ 180. {P['desc']}")
+        return corta(f"Camisa básica católica {P['nome']}, nas cores {', '.join(P['cores'])}, tamanhos P a GG. R$ 75, ou 3 por R$ 200. {P['desc']}")
     if pag.startswith('obj-'):
         L = d['lista']; mn = min(x['preco'] for x in L)
         return corta(f"{d['secNome']} em objeto 3D: " + ', '.join(x['nome'] for x in L) + f". A partir de R$ {br(mn)}. Use Catholic.")
@@ -128,7 +128,7 @@ def cabeca(r, d, noindex=False):
                         'availability': 'https://schema.org/InStock', 'itemCondition': 'https://schema.org/NewCondition', 'url': url, 'seller': {'@id': LOJA_ID}, 'hasMerchantReturnPolicy': troca()} for o in P['ofertas']]
             cat = 'Objetos 3D católicos > ' + P['secNome']; mig = [('Início', '/'), (P['secNome'], '/objetos-3d/' + P['sec']), (P['nome'], r)]
         else:
-            ofertas = [{'@type': 'Offer', 'price': '70.00', 'priceCurrency': 'BRL', 'availability': 'https://schema.org/InStock', 'itemCondition': 'https://schema.org/NewCondition',
+            ofertas = [{'@type': 'Offer', 'price': '75.00', 'priceCurrency': 'BRL', 'availability': 'https://schema.org/InStock', 'itemCondition': 'https://schema.org/NewCondition',
                         'url': url, 'seller': {'@id': LOJA_ID}, 'hasMerchantReturnPolicy': troca()}]
             cat = 'Camisas católicas'; mig = [('Início', '/'), ('Camisas', '/camisas'), (P['nome'], r)]
         grafo.append({'@type': 'Product', '@id': url + '#produto', 'name': P['nome'], 'description': desc, 'image': P['fotos'][:6] or [BASE + '/img/og.jpg'], 'sku': P['id'],
@@ -218,7 +218,7 @@ def main():
     open(os.path.join(REPO, 'robots.txt'), 'w').write('User-agent: *\nAllow: /\n' + ''.join(f'Disallow: {a}\n' for a in APPS) + f'\nSitemap: {BASE}/sitemap.xml\n')
     # resumo para assistentes de IA (llms.txt)
     L = ['# Use Catholic', '', f"> Loja online de camisas básicas católicas e objetos 3D com temas da fé, de {CFG['cidade']}-{CFG['uf']}. Pedido pelo site ou pelo WhatsApp {CFG['telefone']}.", '',
-         '## Condições', '- Camisas: 1 por R$ 70, 2 por R$ 130, 3 por R$ 180 (pode misturar estampas e cores). Tamanhos P, M, G e GG.',
+         '## Condições', '- Camisas: 1 por R$ 75, 2 por R$ 140, 3 por R$ 200 (pode misturar estampas e cores). Tamanhos P, M, G e GG.',
          f"- Objetos 3D: {dados['/']['nObj']} peças, a partir de R$ {br(dados['/']['minObj'])}. Santos e Nossa Senhora em 7, 10 e 15 cm.",
          '- Pagamento: Pix ou cartão de crédito em até 3x sem juros.', '- Frete grátis acima de R$ 250. O prazo depende da região e aparece antes de finalizar.',
          '- Troca em até 7 dias depois de receber, com a peça sem uso.', '- Encomendas: objetos 3D que não estão no site podem ser pedidos pelo WhatsApp.', '',

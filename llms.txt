@@ -3,7 +3,7 @@
 > Loja online de camisas básicas católicas e objetos 3D com temas da fé, de Campina Grande-PB. Pedido pelo site ou pelo WhatsApp +55 83 98720-0345.
 
 ## Condições
-- Camisas: 1 por R$ 70, 2 por R$ 130, 3 por R$ 180 (pode misturar estampas e cores). Tamanhos P, M, G e GG.
+- Camisas: 1 por R$ 75, 2 por R$ 140, 3 por R$ 200 (pode misturar estampas e cores). Tamanhos P, M, G e GG.
 - Objetos 3D: 26 peças, a partir de R$ 9,99. Santos e Nossa Senhora em 7, 10 e 15 cm.
 - Pagamento: Pix ou cartão de crédito em até 3x sem juros.
 - Frete grátis acima de R$ 250. O prazo depende da região e aparece antes de finalizar.
@@ -11,11 +11,11 @@
 - Encomendas: objetos 3D que não estão no site podem ser pedidos pelo WhatsApp.
 
 ## Camisas
-- [São Bento](https://use-catholicg.vercel.app/camisas/sao-bento): camisa básica católica, R$ 70,00
-- [Santa Teresinha](https://use-catholicg.vercel.app/camisas/santa-teresinha): camisa básica católica, R$ 70,00
-- [Corpo de Cristo](https://use-catholicg.vercel.app/camisas/corpo-de-cristo): camisa básica católica, R$ 70,00
-- [Virgem da Medalha Milagrosa](https://use-catholicg.vercel.app/camisas/virgem-da-medalha-milagrosa): camisa básica católica, R$ 70,00
-- [Gratia Plena](https://use-catholicg.vercel.app/camisas/gratia-plena): camisa básica católica, R$ 70,00
+- [São Bento](https://use-catholicg.vercel.app/camisas/sao-bento): camisa básica católica, R$ 75,00
+- [Santa Teresinha](https://use-catholicg.vercel.app/camisas/santa-teresinha): camisa básica católica, R$ 75,00
+- [Corpo de Cristo](https://use-catholicg.vercel.app/camisas/corpo-de-cristo): camisa básica católica, R$ 75,00
+- [Virgem da Medalha Milagrosa](https://use-catholicg.vercel.app/camisas/virgem-da-medalha-milagrosa): camisa básica católica, R$ 75,00
+- [Gratia Plena](https://use-catholicg.vercel.app/camisas/gratia-plena): camisa básica católica, R$ 75,00
 
 ## Objetos 3D: Santos
 - [São Francisco de Assis](https://use-catholicg.vercel.app/objetos-3d/santos/sao-francisco-de-assis): a partir de R$ 9,99
