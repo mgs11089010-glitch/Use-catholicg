@@ -220,7 +220,7 @@ def main():
     L = ['# Use Catholic', '', f"> Loja online de camisas básicas católicas e objetos 3D com temas da fé, de {CFG['cidade']}-{CFG['uf']}. Pedido pelo site ou pelo WhatsApp {CFG['telefone']}.", '',
          '## Condições', '- Camisas: 1 por R$ 75, 2 por R$ 140, 3 por R$ 200 (pode misturar estampas e cores). Tamanhos P, M, G e GG.',
          f"- Objetos 3D: {dados['/']['nObj']} peças, a partir de R$ {br(dados['/']['minObj'])}. Santos e Nossa Senhora em 7, 10 e 15 cm.",
-         '- Pagamento: Pix ou cartão de crédito em até 3x sem juros.', '- Frete grátis acima de R$ 250. O prazo depende da região e aparece antes de finalizar.',
+         '- Pagamento: Pix ou cartão de crédito em até 3x, com juros no cartão (taxa da maquininha: 3,15% à vista, 5,39% em 2x, 6,12% em 3x).', '- Frete grátis acima de R$ 250. O prazo depende da região e aparece antes de finalizar.',
          '- Troca em até 7 dias depois de receber, com a peça sem uso.', '- Encomendas: objetos 3D que não estão no site podem ser pedidos pelo WhatsApp.', '',
          '## Camisas']
     for c in dados['/camisas']['camisas']: L.append(f"- [{c['nome']}]({BASE}{c['url']}): camisa básica católica, R$ {br(c['preco'])}")
