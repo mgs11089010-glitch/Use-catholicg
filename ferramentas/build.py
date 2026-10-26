@@ -197,7 +197,7 @@ def salvar(r, s):
     f = os.path.join(REPO, 'index.html' if r == '/' else r.strip('/') + '.html')
     os.makedirs(os.path.dirname(f), exist_ok=True); open(f, 'w', encoding='utf-8').write(s)
 
-APPS = ['/sacola', '/finalizar', '/pedido', '/entrar', '/conta', '/redefinir', '/aprovar', '/agenda']
+APPS = ['/sacola', '/finalizar', '/pedido', '/entrar', '/conta', '/redefinir', '/aprovar', '/painel']
 def main():
     dados = asyncio.run(coletar(None)); grades = dados['/']['grades']
     feitos = []
@@ -215,7 +215,7 @@ def main():
             for f in d['prod']['fotos'][:4]: xml.append(f'    <image:image><image:loc>{esc(f)}</image:loc></image:image>')
         xml.append('  </url>')
     xml.append('</urlset>'); open(os.path.join(REPO, 'sitemap.xml'), 'w').write('\n'.join(xml) + '\n')
-    open(os.path.join(REPO, 'robots.txt'), 'w').write('User-agent: *\nAllow: /\n' + ''.join(f'Disallow: {a}\n' for a in APPS) + f'\nSitemap: {BASE}/sitemap.xml\n')
+    open(os.path.join(REPO, 'robots.txt'), 'w').write('User-agent: *\nAllow: /\n' + ''.join(f'Disallow: {a}\n' for a in APPS + ['/agenda']) + f'\nSitemap: {BASE}/sitemap.xml\n')
     # resumo para assistentes de IA (llms.txt)
     L = ['# Use Catholic', '', f"> Loja online de camisas básicas católicas e objetos 3D com temas da fé, de {CFG['cidade']}-{CFG['uf']}. Pedido pelo site ou pelo WhatsApp {CFG['telefone']}.", '',
          '## Condições', '- Camisas: 1 por R$ 75, 2 por R$ 140, 3 por R$ 200 (pode misturar estampas e cores). Tamanhos P, M, G e GG.',
