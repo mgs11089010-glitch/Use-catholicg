@@ -197,7 +197,7 @@ def salvar(r, s):
     f = os.path.join(REPO, 'index.html' if r == '/' else r.strip('/') + '.html')
     os.makedirs(os.path.dirname(f), exist_ok=True); open(f, 'w', encoding='utf-8').write(s)
 
-APPS = ['/sacola', '/finalizar', '/pedido', '/entrar', '/conta', '/redefinir', '/aprovar']
+APPS = ['/sacola', '/finalizar', '/pedido', '/entrar', '/conta', '/redefinir', '/aprovar', '/agenda']
 def main():
     dados = asyncio.run(coletar(None)); grades = dados['/']['grades']
     feitos = []

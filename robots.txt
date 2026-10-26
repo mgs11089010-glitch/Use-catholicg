@@ -7,5 +7,6 @@ Disallow: /entrar
 Disallow: /conta
 Disallow: /redefinir
 Disallow: /aprovar
+Disallow: /agenda
 
 Sitemap: https://use-catholicg.vercel.app/sitemap.xml
