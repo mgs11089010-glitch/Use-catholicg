@@ -105,7 +105,7 @@ def descricao(r, d):
         if P['obj']:
             mn = min(o['preco'] for o in P['ofertas'])
             return corta(f"{P['nome']} em objeto 3D ({P['alt'][0].lower() + P['alt'][1:]}). {'A partir de ' if len(P['ofertas']) > 1 else ''}R$ {br(mn)}. {P['desc']}")
-        return corta(f"Camisa básica católica {P['nome']}, nas cores {', '.join(P['cores'])}, tamanhos P a GG. R$ 75, ou 3 por R$ 200. {P['desc']}")
+        return corta(f"Camisa básica católica {P['nome']}, nas cores {', '.join(P['cores'])}, tamanhos P a GG{' (marrom do P ao G)' if 'marrom' in P['cores'] else ''}. R$ 75, ou 3 por R$ 200. {P['desc']}")
     if pag.startswith('obj-'):
         L = d['lista']; mn = min(x['preco'] for x in L)
         return corta(f"{d['secNome']} em objeto 3D: " + ', '.join(x['nome'] for x in L) + f". A partir de R$ {br(mn)}. Use Catholic.")
@@ -218,7 +218,7 @@ def main():
     open(os.path.join(REPO, 'robots.txt'), 'w').write('User-agent: *\nAllow: /\n' + ''.join(f'Disallow: {a}\n' for a in APPS) + f'\nSitemap: {BASE}/sitemap.xml\n')
     # resumo para assistentes de IA (llms.txt)
     L = ['# Use Catholic', '', f"> Loja online de camisas básicas católicas e objetos 3D com temas da fé, de {CFG['cidade']}-{CFG['uf']}. Pedido pelo site ou pelo WhatsApp {CFG['telefone']}.", '',
-         '## Condições', '- Camisas: 1 por R$ 75, 2 por R$ 140, 3 por R$ 200 (pode misturar estampas e cores). Tamanhos P, M, G e GG.',
+         '## Condições', '- Camisas: 1 por R$ 75, 2 por R$ 140, 3 por R$ 200 (pode misturar estampas e cores). Tamanhos P, M, G e GG (a cor marrom vai do P ao G).',
          f"- Objetos 3D: {dados['/']['nObj']} peças, a partir de R$ {br(dados['/']['minObj'])}. Santos e Nossa Senhora em 7, 10 e 15 cm.",
          '- Pagamento: Pix ou cartão de crédito em até 3x, com juros no cartão (taxa da maquininha: 3,15% à vista, 5,39% em 2x, 6,12% em 3x).', '- Frete grátis acima de R$ 250. O prazo depende da região e aparece antes de finalizar.',
          '- Troca em até 7 dias depois de receber, com a peça sem uso.', '- Encomendas: objetos 3D que não estão no site podem ser pedidos pelo WhatsApp.', '',
