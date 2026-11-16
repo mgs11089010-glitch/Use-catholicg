@@ -37,16 +37,16 @@
     <image:image><image:loc>https://use-catholicg.vercel.app/img/camisas/virgem-da-medalha-milagrosa-preta-4.webp</image:loc></image:image>
   </url>
   <url><loc>https://use-catholicg.vercel.app/camisas/gratia-plena</loc><lastmod>2026-11-16</lastmod><priority>0.8</priority>
-    <image:image><image:loc>https://use-catholicg.vercel.app/img/camisas/gratia-plena-branca-1.webp</image:loc></image:image>
-    <image:image><image:loc>https://use-catholicg.vercel.app/img/camisas/gratia-plena-branca-2.webp</image:loc></image:image>
-    <image:image><image:loc>https://use-catholicg.vercel.app/img/camisas/gratia-plena-branca-3.webp</image:loc></image:image>
-    <image:image><image:loc>https://use-catholicg.vercel.app/img/camisas/gratia-plena-branca-4.webp</image:loc></image:image>
+    <image:image><image:loc>https://use-catholicg.vercel.app/img/camisas/gratia-plena-branca-frente.webp</image:loc></image:image>
+    <image:image><image:loc>https://use-catholicg.vercel.app/img/camisas/gratia-plena-branca-costas.webp</image:loc></image:image>
+    <image:image><image:loc>https://use-catholicg.vercel.app/img/camisas/gratia-plena-branca-detalhe-frente.webp</image:loc></image:image>
+    <image:image><image:loc>https://use-catholicg.vercel.app/img/camisas/gratia-plena-branca-frente-e-costas.webp</image:loc></image:image>
   </url>
   <url><loc>https://use-catholicg.vercel.app/camisas/selos</loc><lastmod>2026-11-16</lastmod><priority>0.8</priority>
-    <image:image><image:loc>https://use-catholicg.vercel.app/img/camisas/selos-branca-1.webp</image:loc></image:image>
-    <image:image><image:loc>https://use-catholicg.vercel.app/img/camisas/selos-branca-2.webp</image:loc></image:image>
-    <image:image><image:loc>https://use-catholicg.vercel.app/img/camisas/selos-branca-3.webp</image:loc></image:image>
-    <image:image><image:loc>https://use-catholicg.vercel.app/img/camisas/selos-branca-4.webp</image:loc></image:image>
+    <image:image><image:loc>https://use-catholicg.vercel.app/img/camisas/selos-branca-frente.webp</image:loc></image:image>
+    <image:image><image:loc>https://use-catholicg.vercel.app/img/camisas/selos-branca-costas.webp</image:loc></image:image>
+    <image:image><image:loc>https://use-catholicg.vercel.app/img/camisas/selos-branca-estampa.webp</image:loc></image:image>
+    <image:image><image:loc>https://use-catholicg.vercel.app/img/camisas/selos-branca-detalhe-costas.webp</image:loc></image:image>
   </url>
   <url><loc>https://use-catholicg.vercel.app/objetos-3d/santos</loc><lastmod>2026-11-16</lastmod><priority>0.8</priority>
   </url>
