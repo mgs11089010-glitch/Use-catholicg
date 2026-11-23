@@ -21,3 +21,14 @@ window.__fill3d=async(slug)=>{
  return {title:t.value.length, desc:document.body.innerText.match(/\d+\/5000/g), sku:sk.value, vars:D.prices.map((p,k)=>L2[st+5*k].value+'/'+L2[st+5*k+1].value), opts:L2.filter(i=>i.placeholder=='Inserir'&&i.tagName=='INPUT').map(i=>i.value).filter(Boolean), imgs:document.body.innerText.match(/Adicionar Imagem \(\d\/9\)/g)};
 };
 window.__save3d=()=>{const b=[...document.querySelectorAll('button')].find(b=>b.innerText.trim()=='Salvar e Não Publicar');b.click();return !!b};
+window.__fill1=async(slug)=>{const B='https://use-catholicg.vercel.app/shopee/';const D=(await (await fetch(B+'listings3d.json?'+Date.now())).json())[slug];
+const dt=new DataTransfer();for(const n of D.imgs){const b=await (await fetch(B+n)).blob();dt.items.add(new File([b],n,{type:'image/jpeg'}));}
+const fi=[...document.querySelectorAll('input[type=file]')].find(i=>i.multiple)||document.querySelectorAll('input[type=file]')[0];fi.files=dt.files;fi.dispatchEvent(new Event('change',{bubbles:true}));
+const t=[...document.querySelectorAll('input')].find(i=>(i.placeholder||'').startsWith('Nome da marca'));window.__setV(t,D.titulo);
+const ql=document.querySelector('.ql-editor');(ql.parentElement.__quill||ql.closest('.ql-container').__quill).setText(D.desc);
+const lab=[...document.querySelectorAll('*')].filter(e=>e.children.length==0&&e.textContent.trim()=='SKU principal')[0];const box=lab.closest('[class*=form-item],[class*=item]')||lab.parentElement.parentElement;const sk=box.querySelector('input');window.__setV(sk,D.sku);
+await new Promise(r=>setTimeout(r,1500));
+const L=[...document.querySelectorAll('input:not([type=file])')];const pi=L.findIndex(i=>i.placeholder=='Input'&&i.closest('[class*=item]')&&/R\$/.test(i.parentElement.parentElement.innerText));
+window.__setV(L[pi],D.prices[0]);window.__setV(L[pi+1],'30');await new Promise(r=>setTimeout(r,500));
+const L2=[...document.querySelectorAll('input:not([type=file])')];return {pi,price:L2[pi].value,stock:L2[pi+1].value,title:t.value.length,sku:sk.value,desc:document.body.innerText.match(/\d+\/5000/g),imgs:document.body.innerText.match(/Adicionar Imagem \(\d\/9\)/g)}};
+window.__pub3d=()=>{const b=[...document.querySelectorAll('button')].find(b=>b.innerText.trim()=='Salvar e Publicar');b.click();return !!b};
