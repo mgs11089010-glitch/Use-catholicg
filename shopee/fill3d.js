@@ -11,7 +11,7 @@ window.__fill3d=async(slug)=>{
  window.__setV(t,D.titulo);
  const ql=document.querySelector('.ql-editor');const q=ql.parentElement.__quill||ql.closest('.ql-container')?.__quill;q.setText(D.desc);
  const lab=[...document.querySelectorAll('*')].filter(e=>e.children.length==0&&e.textContent.trim()=='SKU principal')[0];
- const sk=lab.closest('[class*=form-item],[class*=item]').querySelector('input');window.__setV(sk,D.sku);
+ const box=lab.closest('[class*=form-item],[class*=item]')||lab.parentElement.parentElement;const sk=box.querySelector('input');window.__setV(sk,D.sku);
  await new Promise(r=>setTimeout(r,1500));
  const L=[...document.querySelectorAll('input:not([type=file]),textarea')];
  const st=L.findIndex(i=>i.placeholder=='SKU da Variação')+1;
